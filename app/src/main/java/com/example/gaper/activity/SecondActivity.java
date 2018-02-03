@@ -42,8 +42,8 @@ public class SecondActivity extends MainActivity {
         stop = (Button) findViewById(R.id.stop);
         stop.setOnClickListener(btnClickListener);
         time = (TextView) findViewById(R.id.time);
-        up = findViewById(R.id.up);
-        down = findViewById(R.id.down);
+        up =  (Button)findViewById(R.id.up);
+        down = (Button)findViewById(R.id.down);
 
 
     }
