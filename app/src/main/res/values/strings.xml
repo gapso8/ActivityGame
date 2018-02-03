@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">ActivityGame</string>
+    <string name="imageButton">TODO</string>
+    <string name="frontName">Activity</string>
+    <string name="startCountdown">Start</string>
+    <string name="stopCountdown">Stop</string>
+    <string name="time">30</string>
+    <string name="correct">Correct</string>
+    <string name="incorrect">Incorrect</string>
+</resources>
