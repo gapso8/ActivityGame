@@ -7,4 +7,6 @@
     <string name="time">30</string>
     <string name="correct">Correct</string>
     <string name="incorrect">Incorrect</string>
+    <string name="word">TextView</string>
+    <string name="newWord">New Word</string>
 </resources>

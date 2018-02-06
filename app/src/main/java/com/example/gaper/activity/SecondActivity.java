@@ -5,16 +5,18 @@ import android.widget.TextView;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import java.io.*;
 
 public class SecondActivity extends MainActivity {
 
     private TextView time;
+    private TextView Word;
     private Button start;
     private Button stop;
     private Button up;
     private Button down;
+    private Button newWord;
     private CountDownTimer countDownTimer;
-
 
     private View.OnClickListener btnClickListener = new View.OnClickListener() {
         @Override
@@ -27,6 +29,9 @@ public class SecondActivity extends MainActivity {
                 case R.id.stop:
                     cancel();
                     enableButtons(true);
+                    break;
+                case R.id.newWord:
+                    randomWord();
                     break;
             }
         }
@@ -44,6 +49,9 @@ public class SecondActivity extends MainActivity {
         time = (TextView) findViewById(R.id.time);
         up =  (Button)findViewById(R.id.up);
         down = (Button)findViewById(R.id.down);
+        newWord = (Button)findViewById(R.id.newWord);
+        newWord.setOnClickListener(btnClickListener);
+        Word = (TextView) findViewById(R.id.Word);
 
 
     }
@@ -79,9 +87,7 @@ public class SecondActivity extends MainActivity {
             countDownTimer.cancel();
             countDownTimer = null;
             time.setText(null);
-
         }
-
     }
 
     private void enableButtons(boolean enable){
@@ -95,6 +101,18 @@ public class SecondActivity extends MainActivity {
         }
     }
 
+    private void randomWord () {
+        String line;
+        String a = "Krneki";
+        try {
+            BufferedReader in = new BufferedReader(new FileReader("wordsSpaces"));
+            line = in.readLine();
+            String[] words = line.split(" ");
+            a = words[(int)(Math.random() * 998) + 1];
 
-
+        } catch (IOException e) {
+            System.out.print("Napaka");
+        }
+        Word.setText(a);
+    }
 }
