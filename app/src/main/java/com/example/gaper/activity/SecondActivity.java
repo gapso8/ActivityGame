@@ -1,11 +1,14 @@
 package com.example.gaper.activity;
 
-import android.os.CountDownTimer;
-import android.widget.TextView;
 import android.os.Bundle;
+import android.os.CountDownTimer;
 import android.view.View;
 import android.widget.Button;
-import java.io.*;
+import android.widget.TextView;
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
 
 public class SecondActivity extends MainActivity {
 
@@ -17,6 +20,8 @@ public class SecondActivity extends MainActivity {
     private Button down;
     private Button newWord;
     private CountDownTimer countDownTimer;
+
+    private String[] words;
 
     private View.OnClickListener btnClickListener = new View.OnClickListener() {
         @Override
@@ -31,7 +36,7 @@ public class SecondActivity extends MainActivity {
                     enableButtons(true);
                     break;
                 case R.id.newWord:
-                    randomWord();
+                    setRandomWord();
                     break;
             }
         }
@@ -53,7 +58,8 @@ public class SecondActivity extends MainActivity {
         newWord.setOnClickListener(btnClickListener);
         Word = (TextView) findViewById(R.id.Word);
 
-
+        createWordsList();
+        setRandomWord();
     }
 
     public void start(int timeS) {
@@ -68,9 +74,7 @@ public class SecondActivity extends MainActivity {
                 int minute = sek / 60;
                 int preoStaleSekunde = sek - minute * 60;
                 time.setText("" + minute + " : " + preoStaleSekunde);
-
             }
-
             @Override
             public void onFinish() {
                 time.setText("Done!!!");
@@ -82,7 +86,6 @@ public class SecondActivity extends MainActivity {
     }
 
     public void cancel() {
-
         if (countDownTimer != null) {
             countDownTimer.cancel();
             countDownTimer = null;
@@ -101,18 +104,17 @@ public class SecondActivity extends MainActivity {
         }
     }
 
-    private void randomWord () {
-        String line;
-        String a = "Krneki";
+    private void createWordsList() {
         try {
-            BufferedReader in = new BufferedReader(new FileReader("wordsSpaces"));
-            line = in.readLine();
-            String[] words = line.split(" ");
-            a = words[(int)(Math.random() * 998) + 1];
-
+            BufferedReader in = new BufferedReader(new InputStreamReader(getAssets().open("asset/random_words.txt")));
+            String line = in.readLine();
+            words = line.split(" ");
         } catch (IOException e) {
-            System.out.print("Napaka");
+            System.out.print("Napaka pri branju datoteke: " + e.getMessage());
         }
-        Word.setText(a);
+    }
+
+    private void setRandomWord () {
+        Word.setText(words[(int)(Math.random() * 998) + 1]);
     }
 }
