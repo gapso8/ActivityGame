@@ -1,5 +1,7 @@
 package com.example.gaper.activity;
 
+import android.graphics.Color;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.view.View;
@@ -27,6 +29,8 @@ public class SecondActivity extends MainActivity {
     private String[] words;
     private String[] presentation = {"speaking", "drawing", "pantomime"};
     private String a = "";
+    MediaPlayer mp;
+
 
     private View.OnClickListener btnClickListener = new View.OnClickListener() {
         @Override
@@ -34,6 +38,7 @@ public class SecondActivity extends MainActivity {
             switch (v.getId()) {
                 case R.id.start:
                     start(90);
+                    time.setTextColor(Color.parseColor("#000000"));
                     enableButtons(true, 4);
                     break;
                 case R.id.stop:
@@ -81,15 +86,18 @@ public class SecondActivity extends MainActivity {
         end = (Button) findViewById(R.id.end);
         end.setOnClickListener(btnClickListener);
 
+
         createWordsList();
         //setRandomWord();
         word.setText(null);
         share.setText(null);
+        mp  = MediaPlayer.create(this, R.raw.sound);
     }
+
+
 
     public void start(int timeS) {
         time.setText(null);
-
         countDownTimer = new CountDownTimer(timeS * 1000, 1000) {
             @Override
             public void onTick(long millisUntilFinished) {
@@ -97,12 +105,17 @@ public class SecondActivity extends MainActivity {
 
                 int sek = (int)millisUntilFinished / 1000;
                 int minute = sek / 60;
-                int preoStaleSekunde = sek - minute * 60;
-                time.setText("" + minute + " : " + preoStaleSekunde);
+                int preostaleSekunde = sek - minute * 60;
+                time.setText("" + minute + " : " + preostaleSekunde);
+                if(preostaleSekunde == 5){
+                    time.setTextColor(Color.parseColor("#FF0000"));
+                    mp.start();
+                }
             }
             @Override
             public void onFinish() {
                 time.setText("Time's up!");
+                mp.start();
             }
         };
 
