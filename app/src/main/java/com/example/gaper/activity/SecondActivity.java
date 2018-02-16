@@ -31,6 +31,10 @@ public class SecondActivity extends MainActivity {
     private String a = "";
     MediaPlayer mp;
 
+    public int correct = 0;
+    public int incorrect = 0;
+
+
 
     private View.OnClickListener btnClickListener = new View.OnClickListener() {
         @Override
@@ -51,9 +55,11 @@ public class SecondActivity extends MainActivity {
                     break;
                 case R.id.up:
                     enableButtons(true, 3);
+                    points(true);
                     break;
                 case R.id.down:
                     enableButtons(true, 3);
+                    points(false);
                     break;
                 case R.id.word:
                     goTo(v);
@@ -88,7 +94,6 @@ public class SecondActivity extends MainActivity {
 
 
         createWordsList();
-        //setRandomWord();
         word.setText(null);
         share.setText(null);
         mp  = MediaPlayer.create(this, R.raw.sound);
@@ -193,5 +198,14 @@ public class SecondActivity extends MainActivity {
     private void theEnd (){
         Intent j = new Intent(SecondActivity.this, EndActivity.class);
         startActivity(j);
+    }
+
+    private void points(boolean a){
+        if(a){
+            correct++;
+        }else{
+            incorrect++;
+
+        }
     }
 }

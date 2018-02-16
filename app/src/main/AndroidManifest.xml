@@ -17,7 +17,8 @@
             </intent-filter>
         </activity>
         <activity android:name=".SecondActivity" />
-        <activity android:name=".EndActivity"></activity>
+        <activity android:name=".EndActivity" />
+        <activity android:name=".StatisticsActivity"></activity>
     </application>
 
 </manifest>

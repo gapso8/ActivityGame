@@ -11,4 +11,7 @@
     <string name="newWord">New Word</string>
     <string name="share">TextView</string>
     <string name="the_end">The End</string>
+    <string name="statisticsButton">Statistics</string>
+    <string name="endText">text</string>
+    <string name="statistics">Statistics</string>
 </resources>
