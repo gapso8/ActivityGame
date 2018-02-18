@@ -25,14 +25,17 @@ public class SecondActivity extends MainActivity {
     private Button newWord;
     private Button end;
     private CountDownTimer countDownTimer;
-
     private String[] words;
     private String[] presentation = {"speaking", "drawing", "pantomime"};
     private String a = "";
     MediaPlayer mp;
 
-    public int correct = 0;
-    public int incorrect = 0;
+    public static double correct = 10;
+    public static double incorrect = 5;
+
+
+
+
 
 
 
@@ -75,11 +78,11 @@ public class SecondActivity extends MainActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_second);
+
         start = (Button) findViewById(R.id.start);
         start.setOnClickListener(btnClickListener);
         stop = (Button) findViewById(R.id.stop);
         stop.setOnClickListener(btnClickListener);
-        time = (TextView) findViewById(R.id.time);
         up =  (Button)findViewById(R.id.up);
         up.setOnClickListener(btnClickListener);
         down = (Button)findViewById(R.id.down);
@@ -88,15 +91,22 @@ public class SecondActivity extends MainActivity {
         newWord.setOnClickListener(btnClickListener);
         word = (Button) findViewById(R.id.word);
         word.setOnClickListener(btnClickListener);
-        share = (TextView) findViewById(R.id.share);
         end = (Button) findViewById(R.id.end);
         end.setOnClickListener(btnClickListener);
 
+        share = (TextView) findViewById(R.id.share);
+        time = (TextView) findViewById(R.id.time);
 
-        createWordsList();
         word.setText(null);
         share.setText(null);
+
         mp  = MediaPlayer.create(this, R.raw.sound);
+
+        createWordsList();
+
+
+
+
     }
 
 
@@ -194,9 +204,11 @@ public class SecondActivity extends MainActivity {
         Intent launchBrowser = new Intent(Intent.ACTION_VIEW, uriUrl);
         startActivity(launchBrowser);
     }
-
+    //tuki bi hotu nardit tko da bi passal double value correct v ta drug activity ko prtisnes gumb The End
     private void theEnd (){
+        //Intent j = new Intent(getApplicationContext(), EndActivity.class);
         Intent j = new Intent(SecondActivity.this, EndActivity.class);
+        j.putExtra("valueCorrect", correct);
         startActivity(j);
     }
 
@@ -205,7 +217,12 @@ public class SecondActivity extends MainActivity {
             correct++;
         }else{
             incorrect++;
-
         }
     }
+
+
+
+
+
+
 }

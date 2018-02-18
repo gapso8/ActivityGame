@@ -1,39 +1,30 @@
 package com.example.gaper.activity;
 
-import android.content.Intent;
+
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.view.View;
-import android.widget.Button;
 import android.widget.TextView;
 
 public class EndActivity extends SecondActivity {
 
     private TextView endText;
-    private Button stats;
 
-    double correct = 15;
-    double incorrect = 8;
+    //tuki bi hotu nardit tko da bi passal double value correct v ta activity
+    //Bundle extras = getIntent().getExtras();
+
+    //double correct = extras.getDouble("valueCorrect");
+    //double Incorrect = extras.getDouble("valueIncorrect");
+    double correct = 1;
+    double incorrect = 1;
     double average = (correct / (correct + incorrect));
 
 
-    private View.OnClickListener btnClickListener = new View.OnClickListener() {
-        @Override
-        public void onClick(View v) {
-            switch (v.getId()) {
-                case R.id.stats:
-                    theEnd();
-                    break;
-            }
-        }
-    };
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_end);
-        stats = (Button) findViewById(R.id.stats);
-        stats.setOnClickListener(btnClickListener);
         endText = (TextView) findViewById(R.id.endText);
 
         setText(average);
@@ -52,10 +43,5 @@ public class EndActivity extends SecondActivity {
             endText.setText("Very bad!\nYour average is " + average * 100 + "%");
     }
 
-
-    private void theEnd() {
-        Intent g = new Intent(EndActivity.this, StatisticsActivity.class);
-        startActivity(g);
-    }
 }
 
