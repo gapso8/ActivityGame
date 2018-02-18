@@ -1,23 +1,26 @@
 package com.example.gaper.activity;
 
+import android.content.Context;
+import android.content.Intent;
 import android.graphics.Color;
 import android.media.MediaPlayer;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.CountDownTimer;
+import android.os.Vibrator;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import android.content.Intent;
-import android.net.Uri;
 
 public class SecondActivity extends MainActivity {
 
     private TextView time;
     private TextView share;
-    private Button word;
+    private TextView word;
     private Button start;
     private Button stop;
     private Button up;
@@ -30,12 +33,8 @@ public class SecondActivity extends MainActivity {
     private String a = "";
     MediaPlayer mp;
 
-    public static double correct = 10;
-    public static double incorrect = 5;
-
-
-
-
+    private double correct;
+    private double incorrect;
 
 
 
@@ -54,6 +53,7 @@ public class SecondActivity extends MainActivity {
                     break;
                 case R.id.newWord:
                     setRandomWord();
+                    time.setText("");
                     enableButtons(false, 1);
                     break;
                 case R.id.up:
@@ -89,7 +89,7 @@ public class SecondActivity extends MainActivity {
         down.setOnClickListener(btnClickListener);
         newWord = (Button)findViewById(R.id.newWord);
         newWord.setOnClickListener(btnClickListener);
-        word = (Button) findViewById(R.id.word);
+        word = (TextView) findViewById(R.id.word);
         word.setOnClickListener(btnClickListener);
         end = (Button) findViewById(R.id.end);
         end.setOnClickListener(btnClickListener);
@@ -110,6 +110,11 @@ public class SecondActivity extends MainActivity {
     }
 
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+    }
+
 
     public void start(int timeS) {
         time.setText(null);
@@ -121,8 +126,16 @@ public class SecondActivity extends MainActivity {
                 int sek = (int)millisUntilFinished / 1000;
                 int minute = sek / 60;
                 int preostaleSekunde = sek - minute * 60;
-                time.setText("" + minute + " : " + preostaleSekunde);
-                if(preostaleSekunde == 5){
+
+                String secondString = preostaleSekunde < 2 ? " second left" : " seconds left";
+
+                if (minute < 1) {
+                    time.setText(preostaleSekunde +  secondString);
+                }
+                else {
+                    time.setText(minute + " minute : " + preostaleSekunde + secondString);
+                }
+                if(sek <= 10){
                     time.setTextColor(Color.parseColor("#FF0000"));
                     mp.start();
                 }
@@ -131,6 +144,10 @@ public class SecondActivity extends MainActivity {
             public void onFinish() {
                 time.setText("Time's up!");
                 mp.start();
+                mp.release();
+                cancel();
+                enableButtons(true, 2);
+                vibrateOnEnd();
             }
         };
 
@@ -166,7 +183,6 @@ public class SecondActivity extends MainActivity {
                 case 4:
                     start.setEnabled(false);
                     stop.setEnabled(true);
-                    word.setEnabled(false);
                     break;
             }
         }
@@ -175,7 +191,6 @@ public class SecondActivity extends MainActivity {
             down.setEnabled(false);
             newWord.setEnabled(false);
             start.setEnabled(true);
-            word.setEnabled(true);
         }
     }
 
@@ -189,34 +204,41 @@ public class SecondActivity extends MainActivity {
         }
     }
 
-    private void setRandomWord () {
+    private void setRandomWord() {
         a = words[(int)(Math.random() * words.length-1)];
         word.setText(a);
         share.setText(presentation[(int)(Math.random() * presentation.length)]);
     }
 
     public void goTo (View view) {
-        goToUrl ( "http://www.dictionary.com/browse/"+ a +"?s=t");
+        goToUrl("http://www.dictionary.com/browse/"+ a +"?s=t");
     }
 
-    private void goToUrl (String url) {
+    private void goToUrl(String url) {
         Uri uriUrl = Uri.parse(url);
         Intent launchBrowser = new Intent(Intent.ACTION_VIEW, uriUrl);
         startActivity(launchBrowser);
     }
-    //tuki bi hotu nardit tko da bi passal double value correct v ta drug activity ko prtisnes gumb The End
-    private void theEnd (){
-        //Intent j = new Intent(getApplicationContext(), EndActivity.class);
-        Intent j = new Intent(SecondActivity.this, EndActivity.class);
-        j.putExtra("valueCorrect", correct);
+    private void theEnd(){
+        Bundle myBund = new Bundle();
+        myBund.putDouble("valueCorrect",  correct);
+        myBund.putDouble("valueIncorrect", incorrect);
+        correct = 0; incorrect = 0;
+        Intent j = new Intent(getApplicationContext(), EndActivity.class);
+        j.putExtras(myBund);
         startActivity(j);
     }
 
     private void points(boolean a){
-        if(a){
-            correct++;
-        }else{
-            incorrect++;
+        if(a) correct++;
+        else incorrect++;
+    }
+
+    private void vibrateOnEnd() {
+
+        Vibrator myVib = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
+        if (myVib.hasVibrator()) {
+            myVib.vibrate(1000);
         }
     }
 

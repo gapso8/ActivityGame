@@ -38,18 +38,20 @@
     <TextView
         android:id="@+id/time"
         android:layout_width="0dp"
-        android:layout_height="63dp"
+        android:layout_height="90dp"
         android:ems="10"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
         android:text="@string/time"
         android:textAlignment="center"
         android:textAppearance="@style/TextAppearance.AppCompat.SearchResult.Title"
-        android:textSize="40sp"
+        android:textSize="25sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.238" />
+        app:layout_constraintVertical_bias="0.238"/>
 
     <Button
         android:id="@+id/up"
@@ -81,11 +83,11 @@
         app:layout_constraintTop_toBottomOf="@+id/stop"
         app:layout_constraintVertical_bias="0.822" />
 
-    <Button
+    <TextView
         android:id="@+id/word"
         style="@style/Widget.AppCompat.Button.Borderless"
         android:layout_width="0dp"
-        android:layout_height="70dp"
+        android:layout_height="80dp"
         android:text="@string/word"
         android:textAlignment="center"
         android:textSize="35sp"
@@ -94,7 +96,7 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/time"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintVertical_bias="0.0"/>
 
     <Button
         android:id="@+id/newWord"
