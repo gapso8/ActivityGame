@@ -33,8 +33,14 @@ public class SecondActivity extends MainActivity {
     private String a = "";
     MediaPlayer mp;
 
-    private double correct;
-    private double incorrect;
+    private int correct;
+    private int incorrect;
+    private int specor;
+    private int speinc;
+    private int dracor;
+    private int drainc;
+    private int pancor;
+    private int paninc;
 
 
 
@@ -103,18 +109,12 @@ public class SecondActivity extends MainActivity {
         mp  = MediaPlayer.create(this, R.raw.sound);
 
         createWordsList();
-
-
-
-
     }
-
 
     @Override
     protected void onResume() {
         super.onResume();
     }
-
 
     public void start(int timeS) {
         time.setText(null);
@@ -210,7 +210,7 @@ public class SecondActivity extends MainActivity {
         share.setText(presentation[(int)(Math.random() * presentation.length)]);
     }
 
-    public void goTo (View view) {
+    public void goTo(View view) {
         goToUrl("http://www.dictionary.com/browse/"+ a +"?s=t");
     }
 
@@ -221,21 +221,57 @@ public class SecondActivity extends MainActivity {
     }
     private void theEnd(){
         Bundle myBund = new Bundle();
-        myBund.putDouble("valueCorrect",  correct);
-        myBund.putDouble("valueIncorrect", incorrect);
+        myBund.putInt("valueCorrect",  correct);
+        myBund.putInt("valueIncorrect", incorrect);
+        myBund.putInt("valueSpecor", specor);
+        myBund.putInt("valueSpeinc", speinc);
+        myBund.putInt("valueDracor", dracor);
+        myBund.putInt("valueDrainc", drainc);
+        myBund.putInt("valuePancor", pancor);
+        myBund.putInt("valuePaninc", paninc);
         correct = 0; incorrect = 0;
+        specor = 0; speinc = 0;
+        dracor = 0; drainc = 0;
+        pancor = 0; paninc = 0;
+        up.setText("Correct"); down.setText("Incorrect");
         Intent j = new Intent(getApplicationContext(), EndActivity.class);
         j.putExtras(myBund);
         startActivity(j);
     }
 
     private void points(boolean a){
-        if(a) correct++;
-        else incorrect++;
+        if(a) {
+            correct++;
+            up.setText("Correct\n(" + correct + ")");
+            switch(share.getText().toString()){
+                case "speaking":
+                    specor++;
+                    break;
+                case "drawing":
+                    dracor++;
+                    break;
+                case "pantomime":
+                    pancor++;
+                    break;
+            }
+        }else {
+            incorrect++;
+            down.setText("Incorrect\n(" + incorrect + ")");
+            switch(share.getText().toString()){
+                case "speaking":
+                    speinc++;
+                    break;
+                case "drawing":
+                    drainc++;
+                    break;
+                case "pantomime":
+                    paninc++;
+                    break;
+            }
+        }
     }
 
     private void vibrateOnEnd() {
-
         Vibrator myVib = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
         if (myVib.hasVibrator()) {
             myVib.vibrate(1000);
