@@ -2,6 +2,7 @@ package com.example.gaper.activity;
 
 import android.content.Context;
 import android.content.Intent;
+import android.database.Cursor;
 import android.graphics.Color;
 import android.media.MediaPlayer;
 import android.net.Uri;
@@ -12,9 +13,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
+import com.example.gaper.activity.database.MyDatabase;
+import com.example.gaper.activity.database.Words;
 
 public class SecondActivity extends MainActivity {
 
@@ -28,19 +28,12 @@ public class SecondActivity extends MainActivity {
     private Button newWord;
     private Button end;
     private CountDownTimer countDownTimer;
-    private String[] words;
     private String[] presentation = {"speaking", "drawing", "pantomime"};
     private String a = "";
-    MediaPlayer mp;
+    public MediaPlayer mp;
 
-    private int correct;
-    private int incorrect;
-    private int specor;
-    private int speinc;
-    private int dracor;
-    private int drainc;
-    private int pancor;
-    private int paninc;
+    private int correct, incorrect, specor, speinc, dracor, drainc, pancor, paninc;
+    private MyDatabase myDB = new MyDatabase(this);
 
 
 
@@ -108,7 +101,7 @@ public class SecondActivity extends MainActivity {
 
         mp  = MediaPlayer.create(this, R.raw.sound);
 
-        createWordsList();
+        //populateDatabase();
     }
 
     @Override
@@ -194,6 +187,7 @@ public class SecondActivity extends MainActivity {
         }
     }
 
+    /*
     private void createWordsList() {
         try {
             BufferedReader in = new BufferedReader(new InputStreamReader(getAssets().open("asset/random_words.txt")));
@@ -203,11 +197,17 @@ public class SecondActivity extends MainActivity {
             System.out.print("Napaka pri branju datoteke: " + e.getMessage());
         }
     }
+    */
 
     private void setRandomWord() {
-        a = words[(int)(Math.random() * words.length-1)];
-        word.setText(a);
-        share.setText(presentation[(int)(Math.random() * presentation.length)]);
+        Cursor myCursor = myDB.getWordFromTable((int)(Math.random() * Words.getWords().length-1));
+
+        if (myCursor.moveToFirst()){
+                String data = myCursor.getString(myCursor.getColumnIndex("word"));
+                word.setText(data);
+                share.setText(presentation[(int) (Math.random() * presentation.length)]);
+        }
+        myCursor.close();
     }
 
     public void goTo(View view) {
@@ -276,6 +276,12 @@ public class SecondActivity extends MainActivity {
         if (myVib.hasVibrator()) {
             myVib.vibrate(1000);
         }
+    }
+
+
+    private void populateDatabase() {
+        myDB.clear();
+        myDB.insertScore();
     }
 
 
