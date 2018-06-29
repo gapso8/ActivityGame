@@ -7,10 +7,6 @@ import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
-/**
- * Created by Urban on 11. 04. 2018.
- */
-
 public class MyDatabase extends SQLiteOpenHelper {
 
     private static String DATABASE_NAME = "activity_database";

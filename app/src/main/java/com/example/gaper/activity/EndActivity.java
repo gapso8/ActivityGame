@@ -2,14 +2,12 @@ package com.example.gaper.activity;
 
 
 import android.os.Bundle;
-import android.util.Log;
 import android.widget.TextView;
 
-public class EndActivity extends SecondActivity {
+public class EndActivity extends PlayActivity {
 
     private TextView endText;
     private TextView stats;
-
     double average;
     private int incorrectVal;
     private int correctVal;
@@ -67,7 +65,5 @@ public class EndActivity extends SecondActivity {
 
         stats.setText("STATISTICS\n" + tries + speaking + drawing + pantomime);
     }
-
-
 }
 

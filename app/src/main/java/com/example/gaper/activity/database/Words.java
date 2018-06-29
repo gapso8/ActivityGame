@@ -1,9 +1,5 @@
 package com.example.gaper.activity.database;
 
-/**
- * Created by Urban on 11. 04. 2018.
- */
-
 public class Words {
 
     public static String wordsString = "ability able about above accept according account across act action activity " +

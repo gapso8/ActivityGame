@@ -15,4 +15,16 @@
     <string name="endText">text</string>
     <string name="statistics">Statistics</string>
     <string name="statisticsText">TextView</string>
+    <string name="done">DONE</string>
+    <string name="selectTeams">Select 2 teams</string>
+    <string name="team">TextView</string>
+    <string name="teamName">name</string>
+    <string name="teamColor">color</string>
+    <string name="team_name">1. Team</string>
+    <string name="color">color</string>
+    <string name="choose_color">choose Color</string>
+    <string name="black">TODO</string>
+    <string name="red">TODO</string>
+    <string name="green">TODO</string>
+    <string name="blue">TODO</string>
 </resources>

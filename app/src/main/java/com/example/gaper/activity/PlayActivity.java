@@ -13,10 +13,12 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+
 import com.example.gaper.activity.database.MyDatabase;
 import com.example.gaper.activity.database.Words;
 
-public class SecondActivity extends MainActivity {
+
+public class PlayActivity extends MainActivity {
 
     private TextView time;
     private TextView share;
@@ -76,7 +78,7 @@ public class SecondActivity extends MainActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_second);
+        setContentView(R.layout.play_activity);
 
         start = (Button) findViewById(R.id.start);
         start.setOnClickListener(btnClickListener);
@@ -93,11 +95,15 @@ public class SecondActivity extends MainActivity {
         end = (Button) findViewById(R.id.end);
         end.setOnClickListener(btnClickListener);
 
+        start.setEnabled(false);
+        stop.setEnabled(false);
+
         share = (TextView) findViewById(R.id.share);
         time = (TextView) findViewById(R.id.time);
 
         word.setText(null);
         share.setText(null);
+        time.setText(null);
 
         mp  = MediaPlayer.create(this, R.raw.sound);
 
@@ -114,8 +120,6 @@ public class SecondActivity extends MainActivity {
         countDownTimer = new CountDownTimer(timeS * 1000, 1000) {
             @Override
             public void onTick(long millisUntilFinished) {
-                time.setText("" + millisUntilFinished / 1000);
-
                 int sek = (int)millisUntilFinished / 1000;
                 int minute = sek / 60;
                 int preostaleSekunde = sek - minute * 60;
@@ -139,7 +143,9 @@ public class SecondActivity extends MainActivity {
                 mp.start();
                 mp.release();
                 cancel();
-                enableButtons(true, 2);
+                enableButtons(true, 3);
+                stop.setEnabled(false);
+                points(false);
                 vibrateOnEnd();
             }
         };
@@ -183,21 +189,10 @@ public class SecondActivity extends MainActivity {
             up.setEnabled(false);
             down.setEnabled(false);
             newWord.setEnabled(false);
+            stop.setEnabled(false);
             start.setEnabled(true);
         }
     }
-
-    /*
-    private void createWordsList() {
-        try {
-            BufferedReader in = new BufferedReader(new InputStreamReader(getAssets().open("asset/random_words.txt")));
-            String line = in.readLine();
-            words = line.split(" ");
-        } catch (IOException e) {
-            System.out.print("Napaka pri branju datoteke: " + e.getMessage());
-        }
-    }
-    */
 
     private void setRandomWord() {
         Cursor myCursor = myDB.getWordFromTable((int)(Math.random() * Words.getWords().length-1));
@@ -283,10 +278,5 @@ public class SecondActivity extends MainActivity {
         myDB.clear();
         myDB.insertScore();
     }
-
-
-
-
-
 
 }
