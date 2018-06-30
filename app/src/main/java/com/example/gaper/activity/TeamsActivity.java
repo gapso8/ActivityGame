@@ -15,7 +15,6 @@ import android.widget.Toast;
 public class TeamsActivity extends MainActivity {
 
     private TextView text;
-    private Button done;
     private EditText nameInput;
 
     private ImageButton red;
@@ -23,26 +22,28 @@ public class TeamsActivity extends MainActivity {
     private ImageButton blue;
     private ImageButton black;
 
+    private EditText player1Input;
+    private EditText player2Input;
+
+    private Button done;
+
     private float scale;
 
     ImageButton[] buttons;
 
-    String name = "";
+    //String name = "";
     String color = "";
     String[] teamName = new String[2];
     String[] teamColor = new String[2];
-
+    String[][] players = new String[2][2];
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_teams);
 
-        done = (Button) findViewById(R.id.done);
         text = (TextView) findViewById(R.id.text);
         nameInput = (EditText) findViewById(R.id.nameInput);
-
-        text.setText("1. Team");
         nameInput.setText(text.getText().toString());
 
         buttons = new ImageButton[]{
@@ -56,36 +57,30 @@ public class TeamsActivity extends MainActivity {
             btn.setOnClickListener(btnClickListener);
         }
 
+        player1Input = (EditText) findViewById(R.id.player1Input);
+        player2Input = (EditText) findViewById(R.id.player2Input);
+
+        done = (Button) findViewById(R.id.done);
+
         done.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(nameInput.getText().toString().equals("") || color == ""){
-                    Toast.makeText(TeamsActivity.this, "Enter required information!",
-                            Toast.LENGTH_LONG).show();
-                }else {
                     if (text.getText().equals("1. Team")) {
-                        setInfo(0);
-                        nameInput.setText("2. Team");
-                    } else {
-                        if (nameInput.getText().toString().equals(teamName[0]) || color == teamColor[0]) {
-                            Toast.makeText(TeamsActivity.this, "Team names and/or team colors shouldn't match",
-                                    Toast.LENGTH_LONG).show();
-                        } else {
+                        if(checkInfo())
+                            setInfo(0);
+                    } else if (checkInfo()){
                             setInfo(1);
                             Bundle myBund = new Bundle();
                             myBund.putStringArray("teamName", teamName);
                             myBund.putStringArray("teamColor", teamColor);
+                            myBund.putSerializable("players", players);
                             Intent i = new Intent(TeamsActivity.this, PlayActivity.class);
                             i.putExtras(myBund);
                             startActivity(i);
-                        }
                     }
-                }
-
             }
         });
     }
-
 
     private View.OnClickListener btnClickListener = new View.OnClickListener() {
         @Override
@@ -105,7 +100,6 @@ public class TeamsActivity extends MainActivity {
                 case R.id.black:
                     setButtonScale(buttons, "black");
                     break;
-
             }
         }
     };
@@ -126,13 +120,32 @@ public class TeamsActivity extends MainActivity {
 
     private void setInfo(int team) {
         text.setText("2. Team");
-        name = nameInput.getText().toString();
-        teamName[team] = name;
+        teamName[team] = nameInput.getText().toString();
         teamColor[team] = color;
+        players[team][0] = player1Input.getText().toString();
+        players[team][1] = player2Input.getText().toString();
         color = "";
-        name = "";
+        nameInput.setText("2. Team");
+        player1Input.setText("Player 1");
+        player2Input.setText("Player 2");
         setButtonScale(buttons, "");
     }
 
+    private boolean checkInfo() {
+        boolean validInfo = false;
+        if(nameInput.getText().toString().equals("") || color.equals("") ||
+                player1Input.getText().toString().equals("") || player2Input.getText().toString().equals("")){
+            Toast.makeText(TeamsActivity.this, "Enter required information!",
+                    Toast.LENGTH_LONG).show();
+        }else if(player1Input.getText().toString().equals(player2Input.getText().toString())){
+            Toast.makeText(TeamsActivity.this, "Names of the players have to be different!",
+                    Toast.LENGTH_LONG).show();
+        }else if (text.getText().equals("2. Team") && nameInput.getText().toString().equals(teamName[0]) || color.equals(teamColor[0])) {
+            Toast.makeText(TeamsActivity.this, "Team names and/or team colors shouldn't match",
+                    Toast.LENGTH_LONG).show();
+        }else
+            validInfo = true;
 
+        return validInfo;
+    }
 }

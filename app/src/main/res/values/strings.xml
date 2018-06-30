@@ -17,9 +17,9 @@
     <string name="statisticsText">TextView</string>
     <string name="done">DONE</string>
     <string name="selectTeams">Select 2 teams</string>
-    <string name="team">TextView</string>
-    <string name="teamName">name</string>
-    <string name="teamColor">color</string>
+    <string name="team">1. Team</string>
+    <string name="teamName">Name</string>
+    <string name="teamColor">Color</string>
     <string name="team_name">1. Team</string>
     <string name="color">color</string>
     <string name="choose_color">choose Color</string>
@@ -27,4 +27,9 @@
     <string name="red">TODO</string>
     <string name="green">TODO</string>
     <string name="blue">TODO</string>
+    <string name="player_1_input">Player 1</string>
+    <string name="player_2_input">Player 2</string>
+    <string name="player_1">Player 1</string>
+    <string name="player_2">Player 2</string>
+    <string name="play_team_name">TextView</string>
 </resources>

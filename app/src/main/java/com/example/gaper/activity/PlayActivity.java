@@ -20,6 +20,7 @@ import com.example.gaper.activity.database.Words;
 
 public class PlayActivity extends MainActivity {
 
+    private TextView playingTeamName;
     private TextView time;
     private TextView share;
     private TextView word;
@@ -37,7 +38,14 @@ public class PlayActivity extends MainActivity {
     private int correct, incorrect, specor, speinc, dracor, drainc, pancor, paninc;
     private MyDatabase myDB = new MyDatabase(this);
 
+    private String [] teamName;
+    private String [] teamColor;
+    private String [][] players;
 
+    int RED = getResources().getColor(R.color.red);
+    int GREEN = getResources().getColor(R.color.green);
+    int BLUE = getResources().getColor(R.color.blue);
+    int BLACK = getResources().getColor(R.color.black);
 
     private View.OnClickListener btnClickListener = new View.OnClickListener() {
         @Override
@@ -80,6 +88,9 @@ public class PlayActivity extends MainActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.play_activity);
 
+        playingTeamName = (TextView) findViewById(R.id.teamName);
+        playingTeamName.setText(teamName[0]);
+
         start = (Button) findViewById(R.id.start);
         start.setOnClickListener(btnClickListener);
         stop = (Button) findViewById(R.id.stop);
@@ -105,9 +116,15 @@ public class PlayActivity extends MainActivity {
         share.setText(null);
         time.setText(null);
 
+
         mp  = MediaPlayer.create(this, R.raw.sound);
 
         //populateDatabase();
+
+        Bundle myBund = getIntent().getExtras();
+        teamName = myBund.getStringArray("teamName");
+        teamColor = myBund.getStringArray("teamColor");
+        players = (String [][]) myBund.getSerializable("players");
     }
 
     @Override
@@ -206,6 +223,7 @@ public class PlayActivity extends MainActivity {
     }
 
     public void goTo(View view) {
+        a = word.getText().toString();
         goToUrl("http://www.dictionary.com/browse/"+ a +"?s=t");
     }
 
