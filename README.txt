@@ -1,20 +1,25 @@
 ---- DESCRIPTION ---
 
-Ideja aplikacije Activity je vzeta iz druabne igre Activity. Osnova te druabne igre temelji na štirih igralcih, ki igrajo dva proti dva. 
-Dva para tekmujeta med seboj tako, da eden v paru drugemu soigralcu v istem paru predstavlja neko besedo oz. besedno zvezo, ki je napisana 
-na kartici katero igralce povleèe iz kupa kart, drugi igralec v paru pa jo mora pravilno uganiti v omejenem èasu. Èe igralec pravilno 
-ugotovi besedo oz. besedno zvezo, se pomakneta naprej po igralni površini, v nasprotnem primeru pa ne. Da je igra še bolj zanimiva, 
-je doloèen pojem nujno predstaviti z naèinom, ki je na kartici poleg pojma vnaprej doloèen, ti naèini pa so govorjenje, patomima in risanje. 
-Aplikacija Activity je namenjena dvema igralcema. Vsak igralec je na vrsti enkrat, po tem preda vlogo drugemu igralcu. Vsakiè je igralcu 
-podan nakljuèen samostalnik v angleškem jeziku, poleg samostalnika pa je napisan tudi naèin predstavljanja (govorjenje, pantomima, risanje), 
-ki je pravtako nakljuèen. Ko je igralec pripravljen da soigralcu predstavi besedo, mora zaèeti odštevalnik èasa, ki odšteva 90 sekund in v 
-tem èasu mora soigralec besedo ugotoviti. Èe besede ne ugotovi, se toèka ne prišteje, èe pa besedo pravilno ugotovi se toèka prišteje in na 
-vrsti je drug igralec. Pomembno je poudariti, da dva igralca ne igrata drug proti drugem, temveè igrata kot skupina, ki eli doseèi èim veèje 
-število toèk v èim manj poskusih. Ta aplikacija predstavlja tudi uèni pripomoèek za uèenje angleškega jezika na bolj zabaven naèin, saj se ob 
-igranju igralci nauèijo pojem prepoznati ga razumeti in obrazloiti. Èe igralec pojma ne pozna lahko nanj klikne, kar ga pošlje na spletno 
-stran agleško – agleškega prevajalnika, kjer je ta beseda razloena v angleškem jeziku.
+Ideja aplikacije Activity je vzeta iz druï¿½abne igre Activity, ki je namenjena Å¡tirim igralcem. V zaÄetku igre se njaprej ustvarita dve ekipi,
+vsaka ima po 2 igralca, dve ekipi pa tekmujeta druga proti drugi (torej dva igralca proti drugima dvema igralcema).
+Dva para tekmujeta med seboj tako, da eden v paru soigralcu v istem paru predstavlja neko besedo oz. besedno zvezo, ki je napisana 
+na kartici katero igralce povleï¿½e iz kupa kart, drugi igralec v paru pa jo mora pravilno uganiti v omejenem ï¿½asu. ï¿½e igralec pravilno 
+ugotovi besedo oz. besedno zvezo, se pomakneta naprej po igralni povrï¿½ini, v nasprotnem primeru pa ne. Da je igra ï¿½e bolj zanimiva, 
+je doloï¿½en pojem nujno predstaviti z naï¿½inom, ki je na kartici poleg pojma vnaprej doloï¿½en, ti naï¿½ini pa so govorjenje, patomima in risanje. 
+Aplikacija Activity je pravtako namenjena ï¿½tirim igralcem. Na zaï¿½etku je potrebno doloï¿½iti imena dveh ekip in imena po dveh igralcev za vsako ekipo
+(lahko pa se odloï¿½ijo za ï¿½e v naprej doloï¿½ena imena ekip in igralcev), poleg tega pa morajo izbrati tudi barvo
+(izbirajo lahko med ï¿½tirimi barvami: rdeï¿½a, zelena, modra in ï¿½rna). V naslednji aktivnosti se igra priï¿½ne igrati, in sicer tako, da igralec klikne
+na gumb za novo besedo (NEW WORD), ki na zaslon prikaï¿½e nakljuï¿½en samostalnik v angleï¿½kem jeziku, z novo besedo pa se na zaslonu pokaï¿½e tudi naï¿½in
+predstavljanja besede (govorjenje, risanje in pantomima), ki je pravtako nakljuï¿½en. Zdaj ima nekaj ï¿½asa, da si besedo ogleda, ko pa pritisne na gumb
+za zaï¿½etek odï¿½tevalnika ï¿½asa, beseda na zaslonu postane nevidna, da je soigralec nebi videl (ï¿½e besedo pozabi, si jo lahko ponovno ogleda ob pritisku
+na gumb v levem zgornjem kotu). Igralec, ki besedo ugotavlja ima natanko 90 sekund ï¿½asa da besedo ugotovi. ï¿½e besedo v tem ï¿½asu ugotovi, se ekipi toï¿½ka
+priï¿½teje, v nasprotnem primeru pa ne. ï¿½e soigralec besedo ugotovi, lahko s pritiskom na gumb (STOP COUNTDOWN) ustavi odï¿½tevalnik ï¿½asa. ï¿½e igralec ne
+razume besede v angleï¿½kem jeziku, lahko nanjo klikne, kar ga popelje na spletno stran angleï¿½ko-angleï¿½kega slovarja, kjer mu je beeda v angleï¿½ï¿½ini
+razloï¿½ena. Ker so vse besede in razlage besed v angleï¿½ï¿½ini, lahko aplikacijo vzamemo tudi kot pripomoï¿½ek za uï¿½enje angleï¿½kega jezika na bolj zabaven
+naï¿½in, saj se ob igranju igralci nauï¿½ijo pojem prepoznati ga razumeti in prikazati na razliï¿½ne naï¿½ine. Ko se igralci odloï¿½ijo da bi igro ï¿½eleli
+konï¿½ati, lahko pritisnejo gumb za konec (THE END), kar jih popelje na zadnjo aktivnost, kjer so prikazani ï¿½e podrobnejï¿½i rezultati igre.
 
----- CONTTACT INFORMATION ----
+---- CONTACT INFORMATION ----
 
-e-Mail: gapimerela123@gmail.com
+e-Mail: gmerela0@gmail.com
 

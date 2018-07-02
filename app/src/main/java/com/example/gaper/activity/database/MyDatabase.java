@@ -68,7 +68,4 @@ public class MyDatabase extends SQLiteOpenHelper {
         return database.rawQuery(query, new String[] {index});
     }
 
-
-
-
 }
