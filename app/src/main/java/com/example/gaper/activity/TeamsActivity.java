@@ -77,6 +77,7 @@ public class TeamsActivity extends MainActivity {
                             Intent i = new Intent(TeamsActivity.this, PlayActivity.class);
                             i.putExtras(myBund);
                             startActivity(i);
+                            finish();
                     }
             }
         });
@@ -126,8 +127,8 @@ public class TeamsActivity extends MainActivity {
         players[team][1] = player2Input.getText().toString();
         color = "";
         nameInput.setText("2. Team");
-        player1Input.setText("Player 1");
-        player2Input.setText("Player 2");
+        player1Input.setText("Player 2_1");
+        player2Input.setText("Player 2_2");
         setButtonScale(buttons, "");
     }
 

@@ -2,46 +2,36 @@ package com.example.gaper.activity;
 
 
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.TextView;
 
 public class EndActivity extends PlayActivity {
 
     private TextView endText;
     private TextView stats;
+
     double average;
-    private int incorrectVal;
-    private int correctVal;
-    private double correct;
-    private double incorrect;
-    private int specorVal;
-    private int speincVal;
-    private int dracorVal;
-    private int draincVal;
-    private int pancorVal;
-    private int panincVal;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_end);
+
         endText = (TextView) findViewById(R.id.endText);
         stats = (TextView) findViewById(R.id.stats);
 
         Bundle myBundle = getIntent().getExtras();
-        correctVal = myBundle.getInt("valueCorrect"); correct = correctVal;
-        incorrectVal = myBundle.getInt("valueIncorrect"); incorrect = incorrectVal;
-        specorVal = myBundle.getInt("valueSpecor");
-        speincVal = myBundle.getInt("valueSpeinc");
-        dracorVal = myBundle.getInt("valueDracor");
-        draincVal = myBundle.getInt("valueDrainc");
-        pancorVal = myBundle.getInt("valuePancor");
-        panincVal = myBundle.getInt("valuePaninc");
 
-        setText();
-        setStats();
+        Team myTeam1 = (Team) myBundle.getSerializable("team1");
+        Team myTeam2 = (Team) myBundle.getSerializable("team2");
+
+        Log.d("neki", myTeam1.name + "_ " + myTeam2.name);
+
+        //setText();
+        //setStats();
     }
 
-    private void setText() {
+    /*private void setText() {
         average = (correct / (correct + incorrect));
         String avgString = String.format("\nYour average is %d %%", (int)(average * 100));
 
@@ -65,5 +55,6 @@ public class EndActivity extends PlayActivity {
 
         stats.setText("STATISTICS\n" + tries + speaking + drawing + pantomime);
     }
+    */
 }
 

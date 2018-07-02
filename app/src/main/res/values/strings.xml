@@ -27,9 +27,15 @@
     <string name="red">TODO</string>
     <string name="green">TODO</string>
     <string name="blue">TODO</string>
-    <string name="player_1_input">Player 1</string>
-    <string name="player_2_input">Player 2</string>
+    <string name="player_1_input">Player 1_1</string>
+    <string name="player_2_input">Player 1_2</string>
     <string name="player_1">Player 1</string>
     <string name="player_2">Player 2</string>
     <string name="play_team_name">TextView</string>
+    <string name="team_1_points">1. Team</string>
+    <string name="team_2_points">2. Team</string>
+    <string name="points1">0 points</string>
+    <string name="points2">0 points</string>
+    <string name="player_on">TextView</string>
+    <string name="visible">TODO</string>
 </resources>
