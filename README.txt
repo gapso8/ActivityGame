@@ -19,6 +19,7 @@ razlo�ena. Ker so vse besede in razlage besed v angle��ini, lahko aplikaci
 na�in, saj se ob igranju igralci nau�ijo pojem prepoznati ga razumeti in prikazati na razli�ne na�ine. Ko se igralci odlo�ijo da bi igro �eleli
 kon�ati, lahko pritisnejo gumb za konec (THE END), kar jih popelje na zadnjo aktivnost, kjer so prikazani �e podrobnej�i rezultati igre.
 
+TESTING
 ---- CONTACT INFORMATION ----
 
 e-Mail: gmerela0@gmail.com
