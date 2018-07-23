@@ -9,7 +9,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.os.Vibrator;
-import android.util.Log;
+import android.support.constraint.ConstraintLayout;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
@@ -43,10 +43,9 @@ public class PlayActivity extends MainActivity {
     private String p = "points";
 
     private String[] presentation = {"speaking", "drawing", "pantomime"};
-    private String [] teamName;
-    private String [] teamColor;
-    private int [] teamColorInt = new int [2];
-    private String [][] players;
+    private String[] teamColor;
+    private String[] teamName;
+    private String[][] players;
     private ArrayList values1 = new ArrayList();
     private ArrayList values2 = new ArrayList();
 
@@ -54,12 +53,9 @@ public class PlayActivity extends MainActivity {
     public MediaPlayer mp;
     private MyDatabase myDB = new MyDatabase(this);
     private CountDownTimer countDownTimer;
-/*
-    int RED = getResources().getColor(R.color.red);
-    int GREEN = getResources().getColor(R.color.green);
-    int BLUE = getResources().getColor(R.color.blue);
-    int BLACK = getResources().getColor(R.color.black);
-*/
+
+    ConstraintLayout constraintLayout;
+
     private View.OnClickListener btnClickListener = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
@@ -78,7 +74,7 @@ public class PlayActivity extends MainActivity {
                     enableButtons(true, 2);
                     break;
                 case R.id.newWord:
-                    changeNames();
+                    change();
                     setRandomWord();
                     time.setText("");
                     enableButtons(false, 1);
@@ -109,22 +105,20 @@ public class PlayActivity extends MainActivity {
 
         //populateDatabase();
 
-        //ConstraintLayout constraintLayout = (ConstraintLayout) findViewById(R.id.constraintLayout);
-        //constraintLayout.setBackgroundColor(getResources().getColor(R.color.red));
+        constraintLayout = (ConstraintLayout) findViewById(R.id.constraintLayout);
 
         playingTeamName = (TextView) findViewById(R.id.teamName);
         playerOn = (TextView) findViewById(R.id.playerOn);
         visible = (ImageButton) findViewById(R.id.visible);
-
         start = (Button) findViewById(R.id.start);
         start.setOnClickListener(btnClickListener);
         stop = (Button) findViewById(R.id.stop);
         stop.setOnClickListener(btnClickListener);
-        up =  (Button)findViewById(R.id.up);
+        up = (Button) findViewById(R.id.up);
         up.setOnClickListener(btnClickListener);
-        down = (Button)findViewById(R.id.down);
+        down = (Button) findViewById(R.id.down);
         down.setOnClickListener(btnClickListener);
-        newWord = (Button)findViewById(R.id.newWord);
+        newWord = (Button) findViewById(R.id.newWord);
         newWord.setOnClickListener(btnClickListener);
         word = (TextView) findViewById(R.id.word);
         word.setOnClickListener(btnClickListener);
@@ -150,38 +144,37 @@ public class PlayActivity extends MainActivity {
         myBund = getIntent().getExtras();
 
         if (myBund != null) {
-
-            Log.d("neki", myBund + " my bundle ");
-
-            teamName = myBund.getStringArray("teamName");   //Error
+            teamName = myBund.getStringArray("teamName");
             teamColor = myBund.getStringArray("teamColor");
             players = (String[][]) myBund.getSerializable("players");
 
-            playingTeamName.setText(teamName[0]);
-            playerOn.setText(players[0][0]);
-            points1Team.setText(teamName[0]);
-            points2Team.setText(teamName[1]);
+            if (teamName != null) {
+                playingTeamName.setText(teamName[0]);
+                playerOn.setText(players[0][0]);
+                points1Team.setText(teamName[0]);
+                points2Team.setText(teamName[1]);
 
-            start.setEnabled(false);
-            stop.setEnabled(false);
-
-            //setTeamColor();
-
-            visible.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    word.setVisibility(View.INVISIBLE);
-                }
-            });
-
-            visible.setOnLongClickListener(new View.OnLongClickListener() {
-                @Override
-                public boolean onLongClick(View v) {
-                    word.setVisibility(View.VISIBLE);
-                    return false;
-                }
-            });
+                setTeamColor(teamColor[0]);
+            }
         }
+        start.setEnabled(false);
+        stop.setEnabled(false);
+
+        visible.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                word.setVisibility(View.INVISIBLE);
+            }
+        });
+
+        visible.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View v) {
+                word.setVisibility(View.VISIBLE);
+                return false;
+            }
+        });
+
     }
 
     @Override
@@ -194,19 +187,18 @@ public class PlayActivity extends MainActivity {
         countDownTimer = new CountDownTimer(timeS * 1000, 1000) {
             @Override
             public void onTick(long millisUntilFinished) {
-                int sek = (int)millisUntilFinished / 1000;
+                int sek = (int) millisUntilFinished / 1000;
                 int minute = sek / 60;
                 int preostaleSekunde = sek - minute * 60;
 
                 String secondString = preostaleSekunde < 2 ? " second left" : " seconds left";
 
                 if (minute < 1) {
-                    time.setText(preostaleSekunde +  secondString);
-                }
-                else {
+                    time.setText(preostaleSekunde + secondString);
+                } else {
                     time.setText(minute + " minute : " + preostaleSekunde + secondString);
                 }
-                if(sek <= 10){
+                if (sek <= 10) {
                     time.setTextColor(Color.parseColor("#FF0000"));
                     mp.start();
                 }
@@ -228,7 +220,6 @@ public class PlayActivity extends MainActivity {
         countDownTimer.start();
     }
 
-
     public void cancel() {
         if (countDownTimer != null) {
             countDownTimer.cancel();
@@ -237,53 +228,68 @@ public class PlayActivity extends MainActivity {
         }
     }
 
-    private void enableButtons(boolean enable, int a){
+    private void enableButtons(boolean enable, int a) {
         if (enable) {
             switch (a) {
                 case 1:
                     up.setEnabled(true);
+                    up.setTextColor(getResources().getColor(R.color.text));
                     down.setEnabled(true);
+                    down.setTextColor(getResources().getColor(R.color.text));
                     newWord.setEnabled(true);
+                    newWord.setTextColor(getResources().getColor(R.color.text));
                     break;
                 case 2:
                     up.setEnabled(true);
+                    up.setTextColor(getResources().getColor(R.color.text));
                     down.setEnabled(true);
+                    down.setTextColor(getResources().getColor(R.color.text));
                     stop.setEnabled(false);
+                    stop.setTextColor(getResources().getColor(R.color.grey));
                     break;
                 case 3:
                     newWord.setEnabled(true);
+                    newWord.setTextColor(getResources().getColor(R.color.text));
                     up.setEnabled(false);
+                    up.setTextColor(getResources().getColor(R.color.grey));
                     down.setEnabled(false);
+                    down.setTextColor(getResources().getColor(R.color.grey));
                     break;
                 case 4:
                     start.setEnabled(false);
+                    start.setTextColor(getResources().getColor(R.color.grey));
                     stop.setEnabled(true);
+                    stop.setTextColor(getResources().getColor(R.color.text));
                     break;
             }
-        }
-        else {
+        } else {
             up.setEnabled(false);
+            up.setTextColor(getResources().getColor(R.color.grey));
             down.setEnabled(false);
+            down.setTextColor(getResources().getColor(R.color.grey));
             newWord.setEnabled(false);
+            newWord.setTextColor(getResources().getColor(R.color.grey));
             stop.setEnabled(false);
+            stop.setTextColor(getResources().getColor(R.color.grey));
             start.setEnabled(true);
+            start.setTextColor(getResources().getColor(R.color.text));
         }
     }
 
     private void setRandomWord() {
-        Cursor myCursor = myDB.getWordFromTable((int)(Math.random() * Words.getWords().length-1));
+        Cursor myCursor = myDB.getWordFromTable((int) (Math.random() * Words.getWords().length - 1));
 
-        if (myCursor.moveToFirst()){
-                String data = myCursor.getString(myCursor.getColumnIndex("word"));
-                word.setText(data);
-                share.setText(presentation[(int) (Math.random() * presentation.length)]);
+        if (myCursor.moveToFirst()) {
+            String data = myCursor.getString(myCursor.getColumnIndex("word"));
+            word.setText(data);
+            share.setText(presentation[(int) (Math.random() * presentation.length)]);
         }
         myCursor.close();
     }
 
     public void goTo(View view) {
         a = word.getText().toString();
-        goToUrl("http://www.dictionary.com/browse/"+ a +"?s=t");
+        goToUrl("http://www.dictionary.com/browse/" + a + "?s=t");
     }
 
     private void goToUrl(String url) {
@@ -292,13 +298,13 @@ public class PlayActivity extends MainActivity {
         startActivity(launchBrowser);
     }
 
-    private void points(boolean a){
-        if(a) {
+    private void points(boolean a) {
+        if (a) {
             setValues("correct");
             points1.setText(getTeamPoints(values1) + " " + p);
             points2.setText(getTeamPoints(values2) + " " + p);
 
-            switch(share.getText().toString()){
+            switch (share.getText().toString()) {
                 case "speaking":
                     setValues("scor");
                     break;
@@ -311,18 +317,18 @@ public class PlayActivity extends MainActivity {
                     setValues("pcor");
                     break;
             }
-        }else {
+        } else {
             setValues("incorrect");
             points1.setText(getTeamPoints(values1) + " " + p);
             points2.setText(getTeamPoints(values2) + " " + p);
 
-            switch(share.getText().toString()){
+            switch (share.getText().toString()) {
                 case "speaking":
                     setValues("sinc");
                     break;
 
                 case "drawing":
-                   setValues("dinc");
+                    setValues("dinc");
                     break;
 
                 case "pantomime":
@@ -332,15 +338,15 @@ public class PlayActivity extends MainActivity {
         }
     }
 
-    private void setValues(String val){
-        if(playingTeamName.getText().toString().equals(teamName[0])){
+    private void setValues(String val) {
+        if (playingTeamName.getText().toString().equals(teamName[0])) {
             values1.add(val);
-        }else{
+        } else {
             values2.add(val);
         }
     }
 
-    private int getTeamPoints(ArrayList val){
+    private int getTeamPoints(ArrayList val) {
         int points = 0;
         points = Collections.frequency(val, "correct");
         if (points == 1)
@@ -350,14 +356,15 @@ public class PlayActivity extends MainActivity {
         return points;
     }
 
-    private void theEnd(){
-        Bundle myBund = new Bundle();
-        Team team1 = new Team(teamName[0], teamColorInt[0], players[0][0], players[0][1], values1);
-        Team team2 = new Team(teamName[1], teamColorInt[1], players[1][0], players[1][1], values2);
+    private void theEnd() {
+        Bundle myBundle = new Bundle();
+        Team team1 = new Team(teamName[0], teamColor[0], players[0][0], players[0][1], values1);
+        Team team2 = new Team(teamName[1], teamColor[1], players[1][0], players[1][1], values2);
 
-        Intent j = new Intent(getApplicationContext(), EndActivity.class);
+        Intent j = new Intent(PlayActivity.this, EndActivity.class);
         j.putExtra("team1", team1);
         j.putExtra("team2", team2);
+
         startActivity(j);
         finish();
     }
@@ -374,60 +381,60 @@ public class PlayActivity extends MainActivity {
         myDB.insertScore();
     }
 
-    private void changeNames(){
+    private void change() {
         String pt = playingTeamName.getText().toString();
         String p = playerOn.getText().toString();
 
-        if(pt.equals(teamName[0]) && word.getText().toString().equals("")) {
+        if (pt.equals(teamName[0]) && word.getText().toString().equals("")) {
             playingTeamName.setText(teamName[0]);
             playerOn.setText(players[0][0]);
 
-        }else {
-            if(pt.equals(teamName[0])){
+        } else {
+            if (pt.equals(teamName[0])) {
                 playingTeamName.setText(teamName[1]);
+                setTeamColor(teamColor[1]);
 
-
-                if(p.equals(players[0][0])) {
+                if (p.equals(players[0][0])) {
                     playerOn.setText(players[1][0]);
-                }else if(p.equals(players[0][1]))
+                } else if (p.equals(players[0][1]))
                     playerOn.setText(players[1][1]);
-                else if(p.equals(players[1][1]))
+                else if (p.equals(players[1][1]))
                     playerOn.setText(players[0][0]);
 
-            }else {
+            } else {
                 playingTeamName.setText(teamName[0]);
+                setTeamColor(teamColor[0]);
+
 
                 if (p.equals(players[1][0]))
                     playerOn.setText(players[0][1]);
-                else if(p.equals(players[1][1]))
+                else if (p.equals(players[1][1]))
                     playerOn.setText(players[0][0]);
-                else if(p.equals(players[0][1]))
+                else if (p.equals(players[0][1]))
                     playerOn.setText(players[1][1]);
+
             }
         }
     }
 
-    /*private void setTeamColor(){
-        String color = teamColor[0];
-
-        for(int i= 0; i < 2; i++) {
-            switch (color) {
-                case "red":
-                    teamColorInt[i] = RED;
-                    break;
-                case "green":
-                    teamColorInt[i] = GREEN;
-                    break;
-                case "blue":
-                    teamColorInt[i] = BLUE;
-                    break;
-                case "black":
-                    teamColorInt[i] = BLACK;
-                    break;
-            }
-            color = teamColor[1];
+    private void setTeamColor(String col) {
+        switch (col) {
+            case "red":
+                constraintLayout.setBackgroundColor(getResources().getColor(R.color.red));
+                //changeTextColor(1);
+                break;
+            case "green":
+                constraintLayout.setBackgroundColor(getResources().getColor(R.color.green));
+                //changeTextColor(1);
+                break;
+            case "blue":
+                constraintLayout.setBackgroundColor(getResources().getColor(R.color.blue));
+                //changeTextColor(1);
+                break;
+            case "black":
+                constraintLayout.setBackgroundColor(getResources().getColor(R.color.black));
+                //changeTextColor(0);
+                break;
         }
     }
-*/
 }
-

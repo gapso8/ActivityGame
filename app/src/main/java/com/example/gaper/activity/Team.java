@@ -9,12 +9,12 @@ import java.util.ArrayList;
 
 public class Team implements Serializable{
     String name;
-    int color;
+    String color;
     String player1;
     String player2;
     ArrayList values;
 
-    public Team(String name, int color, String player1, String player2, ArrayList values){
+    public Team(String name, String color, String player1, String player2, ArrayList values){
         this.name = name;
         this.color = color;
         this.player1 = player1;

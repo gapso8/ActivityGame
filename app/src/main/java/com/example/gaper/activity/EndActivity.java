@@ -9,6 +9,7 @@ public class EndActivity extends PlayActivity {
 
     private TextView endText;
     private TextView stats;
+    private String[] teamName;
 
     double average;
 
@@ -22,10 +23,12 @@ public class EndActivity extends PlayActivity {
 
         Bundle myBundle = getIntent().getExtras();
 
+        //teamName = myBundle.getStringArray("teamName");
+
         Team myTeam1 = (Team) myBundle.getSerializable("team1");
         Team myTeam2 = (Team) myBundle.getSerializable("team2");
 
-        Log.d("neki", myTeam1.name + "_ " + myTeam2.name);
+        //Log.d("neki", myTeam1.name + "_ " + myTeam2.name);
 
         //setText();
         //setStats();

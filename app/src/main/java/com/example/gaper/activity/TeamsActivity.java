@@ -1,18 +1,13 @@
 package com.example.gaper.activity;
 
 import android.content.Intent;
-import android.graphics.Paint;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
-
-//TESTING TESTING
 
 public class TeamsActivity extends MainActivity {
 
@@ -33,7 +28,6 @@ public class TeamsActivity extends MainActivity {
 
     ImageButton[] buttons;
 
-    //String name = "";
     String color = "";
     String[] teamName = new String[2];
     String[] teamColor = new String[2];
