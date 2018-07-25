@@ -1,39 +1,83 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/linearLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#006BB6"
-    tools:context="com.example.gaper.activity.EndActivity">
+    android:orientation="horizontal"
+    android:visibility="visible"
+    tools:context="com.example.gaper.activity.EndActivity"
+    android:baselineAligned="false">
 
-    <TextView
-        android:id="@+id/endText"
-        android:layout_width="0dp"
-        android:layout_height="229dp"
-        android:text="@string/endText"
-        android:textAlignment="center"
-        android:textAppearance="@style/TextAppearance.AppCompat.Title"
-        android:textSize="40sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.12" />
+    <android.support.constraint.ConstraintLayout
+        android:id="@+id/firstLL"
+        android:layout_width="50dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1">
 
-    <TextView
-        android:id="@+id/stats"
-        android:layout_width="339dp"
-        android:layout_height="0dp"
-        android:text="@string/statisticsText"
-        android:textAlignment="center"
-        android:textAppearance="@style/TextAppearance.AppCompat.Title"
-        android:textSize="25sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/endText"
-        app:layout_constraintVertical_bias="0.28" />
+        <TextView
+            android:id="@+id/details1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="TextView"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.741" />
 
-</android.support.constraint.ConstraintLayout>
+        <TextView
+            android:id="@+id/stats1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/stats1"
+            android:textAlignment="center"
+            android:textColor="@color/text"
+            android:textSize="30sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.507"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.127" />
+    </android.support.constraint.ConstraintLayout>
+
+    <android.support.constraint.ConstraintLayout
+        android:id="@+id/secondLL"
+        android:layout_width="50dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1">
+
+        <TextView
+            android:id="@+id/stats2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/stats2"
+            android:textAlignment="center"
+            android:textColor="@color/text"
+            android:textSize="30sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.507"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.136"
+            tools:text="@string/stats1" />
+
+        <TextView
+            android:id="@+id/details2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="TextView"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.75" />
+    </android.support.constraint.ConstraintLayout>
+
+</LinearLayout>

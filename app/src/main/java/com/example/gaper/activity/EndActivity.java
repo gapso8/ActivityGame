@@ -2,55 +2,125 @@ package com.example.gaper.activity;
 
 
 import android.os.Bundle;
+import android.support.constraint.ConstraintLayout;
 import android.util.Log;
+import android.widget.LinearLayout;
 import android.widget.TextView;
+
+import java.text.DecimalFormat;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
 
 public class EndActivity extends PlayActivity {
 
-    private TextView endText;
-    private TextView stats;
-    private String[] teamName;
+    private ArrayList values1;
+    private ArrayList values2;
 
-    double average;
+    Team myTeam1;
+    Team myTeam2;
+
+    TextView stats1;
+    TextView stats2;
+
+    ConstraintLayout firstLL;
+    ConstraintLayout secondLL;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_end);
 
-        endText = (TextView) findViewById(R.id.endText);
-        stats = (TextView) findViewById(R.id.stats);
+        firstLL = (ConstraintLayout) findViewById(R.id.firstLL);
+        secondLL = (ConstraintLayout) findViewById(R.id.secondLL);
+
+        stats1 = (TextView) findViewById(R.id.stats1);
+        stats2 = (TextView) findViewById(R.id.stats2);
 
         Bundle myBundle = getIntent().getExtras();
 
-        //teamName = myBundle.getStringArray("teamName");
+        if (myBundle != null) {
 
-        Team myTeam1 = (Team) myBundle.getSerializable("team1");
-        Team myTeam2 = (Team) myBundle.getSerializable("team2");
+            myTeam1 = (Team) myBundle.getSerializable("team1");
+            myTeam2 = (Team) myBundle.getSerializable("team2");
 
-        //Log.d("neki", myTeam1.name + "_ " + myTeam2.name);
+            values1 = myTeam1.values;
+            values2 = myTeam2.values;
 
-        //setText();
-        //setStats();
+
+            setBackgroundColor();
+
+            setStats();
+        }
+
     }
 
-    /*private void setText() {
-        average = (correct / (correct + incorrect));
-        String avgString = String.format("\nYour average is %d %%", (int)(average * 100));
 
-        if (correct + incorrect == 0)
-            endText.setText("You have to do at least one word");
-        else if (average >= 0.9)
-            endText.setText("Very good!" + avgString);
-        else if (average >= 0.7 && average < 0.9)
-            endText.setText("It could be better!" + avgString);
-        else if (average >= 0.5 && average < 0.7)
-            endText.setText("You definitely need more practise!" + avgString);
-        else if (average >= 0.0 && average < 0.5)
-            endText.setText("Very bad!" + avgString);
+
+    private void setBackgroundColor() {
+
+        switch (myTeam1.color) {
+            case "red":
+                firstLL.setBackgroundColor(getResources().getColor(R.color.red));
+                break;
+            case "green":
+                firstLL.setBackgroundColor(getResources().getColor(R.color.green));
+                break;
+            case "blue":
+                firstLL.setBackgroundColor(getResources().getColor(R.color.blue));
+                break;
+            case "black":
+                firstLL.setBackgroundColor(getResources().getColor(R.color.black));
+                break;
+        }
+
+        switch (myTeam2.color) {
+            case "red":
+                secondLL.setBackgroundColor(getResources().getColor(R.color.red));
+                break;
+            case "green":
+                secondLL.setBackgroundColor(getResources().getColor(R.color.green));
+                break;
+            case "blue":
+                secondLL.setBackgroundColor(getResources().getColor(R.color.blue));
+                break;
+            case "black":
+                secondLL.setBackgroundColor(getResources().getColor(R.color.black));
+                break;
+        }
     }
 
-    private void setStats(){
+    private void setStats() {
+        double average;
+        String avgString;
+
+        average = ((double) Collections.frequency(myTeam1.values, "correct") /
+                ((double) Collections.frequency(myTeam1.values, "correct") + (double) Collections.frequency(myTeam1.values, "incorrect")));
+
+        avgString = String.format("Your average: %d%%", (int) (average * 100));
+
+        String s1 = myTeam1.name + "\n\nPoints: " + Collections.frequency(myTeam1.values, "correct") +
+                "\nIncorrect: " + Collections.frequency(myTeam1.values, "incorrect") + "\n\n" + avgString;
+
+
+
+        average = ((double) Collections.frequency(myTeam2.values, "correct") /
+                ((double) Collections.frequency(myTeam2.values, "correct") + (double) Collections.frequency(myTeam2.values, "incorrect")));
+
+        avgString = String.format("Your average: %d%%", (int) (average * 100));
+
+
+        String s2 = myTeam2.name + "\n\nPoints: " + Collections.frequency(myTeam2.values, "correct") +
+                "\nIncorrect: " + Collections.frequency(myTeam2.values, "incorrect") + "\n\n" + avgString;
+
+        stats1.setText(s1);
+        stats2.setText(s2);
+    }
+
+
+/*
+    private void setDetailedStats(){
         String tries = String.format("\nNumber of tries: %d \n", correctVal + incorrectVal);
         String speaking = String.format("\n\nCorrect speaks: %d \nIncorrect speaks: %d \n",specorVal, speincVal);
         String drawing = String.format("\nCorrect drawings: %d \nIncorrect drawings: %d \n",dracorVal, draincVal);
@@ -59,5 +129,5 @@ public class EndActivity extends PlayActivity {
         stats.setText("STATISTICS\n" + tries + speaking + drawing + pantomime);
     }
     */
-}
 
+}

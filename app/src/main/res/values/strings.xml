@@ -38,4 +38,6 @@
     <string name="points2">0 points</string>
     <string name="player_on">TextView</string>
     <string name="visible">TODO</string>
+    <string name="stats1">TextView</string>
+    <string name="stats2">TextView</string>
 </resources>

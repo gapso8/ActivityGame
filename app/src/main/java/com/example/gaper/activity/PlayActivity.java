@@ -3,7 +3,6 @@ package com.example.gaper.activity;
 import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
-import android.graphics.Color;
 import android.media.MediaPlayer;
 import android.net.Uri;
 import android.os.Bundle;
@@ -64,7 +63,7 @@ public class PlayActivity extends MainActivity {
                     start(90);
                     word.setVisibility(View.INVISIBLE);
                     visible.setVisibility(View.VISIBLE);
-                    time.setTextColor(Color.parseColor("#000000"));
+                    //time.setTextColor(Color.parseColor("#000000"));
                     enableButtons(true, 4);
                     break;
                 case R.id.stop:
@@ -157,8 +156,12 @@ public class PlayActivity extends MainActivity {
                 setTeamColor(teamColor[0]);
             }
         }
+
         start.setEnabled(false);
+        start.setTextColor(getResources().getColor(R.color.grey));
         stop.setEnabled(false);
+        stop.setTextColor(getResources().getColor(R.color.grey));
+        enableButtons(true, 3);
 
         visible.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -199,7 +202,6 @@ public class PlayActivity extends MainActivity {
                     time.setText(minute + " minute : " + preostaleSekunde + secondString);
                 }
                 if (sek <= 10) {
-                    time.setTextColor(Color.parseColor("#FF0000"));
                     mp.start();
                 }
             }
@@ -212,6 +214,7 @@ public class PlayActivity extends MainActivity {
                 cancel();
                 enableButtons(true, 3);
                 stop.setEnabled(false);
+                stop.setTextColor(getResources().getColor(R.color.grey));
                 points(false);
                 vibrateOnEnd();
             }
@@ -421,19 +424,15 @@ public class PlayActivity extends MainActivity {
         switch (col) {
             case "red":
                 constraintLayout.setBackgroundColor(getResources().getColor(R.color.red));
-                //changeTextColor(1);
                 break;
             case "green":
                 constraintLayout.setBackgroundColor(getResources().getColor(R.color.green));
-                //changeTextColor(1);
                 break;
             case "blue":
                 constraintLayout.setBackgroundColor(getResources().getColor(R.color.blue));
-                //changeTextColor(1);
                 break;
             case "black":
                 constraintLayout.setBackgroundColor(getResources().getColor(R.color.black));
-                //changeTextColor(0);
                 break;
         }
     }
