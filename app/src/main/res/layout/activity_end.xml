@@ -18,31 +18,47 @@
         android:layout_weight="1">
 
         <TextView
-            android:id="@+id/details1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="TextView"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.741" />
-
-        <TextView
             android:id="@+id/stats1"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="0dp"
             android:text="@string/stats1"
             android:textAlignment="center"
             android:textColor="@color/text"
-            android:textSize="30sp"
+            android:textSize="33sp"
             android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.507"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.127" />
+            app:layout_constraintVertical_bias="0.094" />
+
+        <TextView
+            android:id="@+id/move1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/move2"
+            android:textColor="@color/text"
+            android:textSize="30sp"
+            android:textStyle="bold|italic"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.92" />
+
+        <TextView
+            android:id="@+id/w1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/w1"
+            android:textColor="@color/text"
+            android:textSize="35sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.696" />
     </android.support.constraint.ConstraintLayout>
 
     <android.support.constraint.ConstraintLayout
@@ -54,30 +70,47 @@
         <TextView
             android:id="@+id/stats2"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="0dp"
             android:text="@string/stats2"
             android:textAlignment="center"
             android:textColor="@color/text"
-            android:textSize="30sp"
+            android:textSize="33sp"
             android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.507"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.136"
+            app:layout_constraintVertical_bias="1.0"
             tools:text="@string/stats1" />
 
         <TextView
-            android:id="@+id/details2"
+            android:id="@+id/move2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="TextView"
+            android:text="@string/move1"
+            android:textColor="@color/text"
+            android:textSize="30sp"
+            android:textStyle="bold|italic"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.75" />
+            app:layout_constraintVertical_bias="0.92" />
+
+        <TextView
+            android:id="@+id/w2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/w2"
+            android:textColor="@color/text"
+            android:textSize="35sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.696" />
     </android.support.constraint.ConstraintLayout>
 
 </LinearLayout>

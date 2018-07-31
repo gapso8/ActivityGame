@@ -40,4 +40,10 @@
     <string name="visible">TODO</string>
     <string name="stats1">TextView</string>
     <string name="stats2">TextView</string>
+    <string name="details1">TextView</string>
+    <string name="details2">TextView</string>
+    <string name="move1">TextView</string>
+    <string name="move2">TextView</string>
+    <string name="w1">TextView</string>
+    <string name="w2">TextView</string>
 </resources>

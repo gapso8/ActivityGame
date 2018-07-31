@@ -63,7 +63,6 @@ public class PlayActivity extends MainActivity {
                     start(90);
                     word.setVisibility(View.INVISIBLE);
                     visible.setVisibility(View.VISIBLE);
-                    //time.setTextColor(Color.parseColor("#000000"));
                     enableButtons(true, 4);
                     break;
                 case R.id.stop:
