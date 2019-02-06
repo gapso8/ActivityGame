@@ -1,4 +1,12 @@
-﻿---- DESCRIPTION ---
+NOTE: Because this was my first android application or even bigger project I have made lots of mistakes during developing this game. One of those silly mistakes was testing an app only on my, at the time, personal mobile phone (OnePlus 3t). A consequence of this begginer mistake was that the application does not perform well on all android devices.
+
+My last check of Activity android application performance confirmed that the app does not behave as it should on android emulator (Nexus 5X API 27). I have also noticed that there occurs a fatal error at the end of application when testing on my current mobile device (OnePlus 6t).
+
+I will try to fix these performance issues as soon as possible.
+
+
+---- DESCRIPTION ---
+In Slovene language:
 
 Ideja aplikacije Activity je vzeta iz druzabne igre Activity, ki je namenjena stirim igralcem. V zacetku igre se najprej ustvarita dve ekipi,
 vsaka ima po 2 igralca, dve ekipi pa tekmujeta druga proti drugi (torej dva igralca proti drugima dvema igralcema).
