@@ -46,4 +46,6 @@
     <string name="move2">TextView</string>
     <string name="w1">TextView</string>
     <string name="w2">TextView</string>
+    <string name="max_points">MAX Points:</string>
+    <string name="max">TextView</string>
 </resources>

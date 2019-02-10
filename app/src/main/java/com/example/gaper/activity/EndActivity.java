@@ -4,29 +4,20 @@ package com.example.gaper.activity;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.constraint.ConstraintLayout;
-import android.text.Spannable;
 import android.text.SpannableString;
-import android.text.style.ForegroundColorSpan;
 import android.text.style.RelativeSizeSpan;
 import android.text.style.StyleSpan;
 import android.text.style.UnderlineSpan;
-import android.util.Log;
 import android.view.View;
-import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
-import android.widget.LinearLayout;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
-
-import java.text.DecimalFormat;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Collections;
 
 public class EndActivity extends PlayActivity {
 
-    private ArrayList values1;
-    private ArrayList values2;
+    ArrayList values1;
+    ArrayList values2;
 
     Team myTeam1;
     Team myTeam2;
@@ -83,7 +74,7 @@ public class EndActivity extends PlayActivity {
         stats2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(count1 == false) {
+                if(!count1) {
                     setMoveText(2);
                     move2.setVisibility(View.VISIBLE);
                     move2.startAnimation(AnimationUtils.loadAnimation(EndActivity.this, android.R.anim.slide_in_left));
@@ -103,7 +94,7 @@ public class EndActivity extends PlayActivity {
         stats1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(count2 == false) {
+                if(!count2) {
                     setMoveText(1);
                     move1.setVisibility(View.VISIBLE);
                     move1.startAnimation(AnimationUtils.loadAnimation(EndActivity.this, android.R.anim.slide_in_left));

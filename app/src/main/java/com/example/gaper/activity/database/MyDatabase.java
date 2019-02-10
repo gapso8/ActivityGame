@@ -68,4 +68,16 @@ public class MyDatabase extends SQLiteOpenHelper {
         return database.rawQuery(query, new String[] {index});
     }
 
+    public boolean checkDatabase (){
+        Cursor myCursor = getWordFromTable(1);
+
+        if (myCursor.getColumnCount() < 1) {
+            System.out.println("NEEEEEEEEEEEE");
+            return false;
+        }else {
+            System.out.println("JAAAAAAAAAA");
+            return true;
+        }
+    }
+
 }

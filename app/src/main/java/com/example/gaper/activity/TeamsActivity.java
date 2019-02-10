@@ -3,15 +3,18 @@ package com.example.gaper.activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
 public class TeamsActivity extends MainActivity {
 
     private TextView text;
+    private TextView maxPoints;
     private EditText nameInput;
 
     private ImageButton red;
@@ -24,6 +27,7 @@ public class TeamsActivity extends MainActivity {
 
     private Button done;
 
+
     private float scale;
 
     ImageButton[] buttons;
@@ -32,6 +36,10 @@ public class TeamsActivity extends MainActivity {
     String[] teamName = new String[2];
     String[] teamColor = new String[2];
     String[][] players = new String[2][2];
+    String[] points = {"10", "15", "20", "25", "30"};
+    String stringPointNum;
+
+    Spinner spinner;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,8 +47,18 @@ public class TeamsActivity extends MainActivity {
         setContentView(R.layout.activity_teams);
 
         text = (TextView) findViewById(R.id.text);
+        maxPoints = (TextView) findViewById(R.id.maxPoints);
         nameInput = (EditText) findViewById(R.id.nameInput);
         nameInput.setText(text.getText().toString());
+
+        spinner = (Spinner) findViewById(R.id.spinner);
+
+        ArrayAdapter<String> myAdapter = new ArrayAdapter<>(TeamsActivity.this,
+                android.R.layout.simple_list_item_1, points);
+
+        myAdapter.setDropDownViewResource(android.R.layout.simple_list_item_1);
+
+        spinner.setAdapter(myAdapter);
 
         buttons = new ImageButton[]{
                 red = (ImageButton) findViewById(R.id.red),
@@ -62,18 +80,23 @@ public class TeamsActivity extends MainActivity {
             @Override
             public void onClick(View v) {
                     if (text.getText().equals("1. Team")) {
-                        if(checkInfo())
+                        if(checkInfo()) {
                             setInfo(0);
+                            spinner.setVisibility(View.INVISIBLE);
+                            maxPoints.setVisibility(View.INVISIBLE);
+                        }
+
                     } else if (checkInfo()){
-                            setInfo(1);
-                            Bundle myBund = new Bundle();
-                            myBund.putStringArray("teamName", teamName);
-                            myBund.putStringArray("teamColor", teamColor);
-                            myBund.putSerializable("players", players);
-                            Intent i = new Intent(TeamsActivity.this, PlayActivity.class);
-                            i.putExtras(myBund);
-                            startActivity(i);
-                            finish();
+                        setInfo(1);
+                        Bundle myBund = new Bundle();
+                        myBund.putStringArray("teamName", teamName);
+                        myBund.putStringArray("teamColor", teamColor);
+                        myBund.putSerializable("players", players);
+                        myBund.putString("stringPointsNum", stringPointNum);
+                        Intent i = new Intent(TeamsActivity.this, PlayActivity.class);
+                        i.putExtras(myBund);
+                        startActivity(i);
+                        finish();
                     }
             }
         });
@@ -126,6 +149,11 @@ public class TeamsActivity extends MainActivity {
         player1Input.setText("Player 2_1");
         player2Input.setText("Player 2_2");
         setButtonScale(buttons, "");
+
+        if (team == 0) {
+            stringPointNum = spinner.getSelectedItem().toString();
+        }
+
     }
 
     private boolean checkInfo() {

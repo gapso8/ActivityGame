@@ -7,12 +7,15 @@ import android.media.MediaPlayer;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.CountDownTimer;
+import android.os.Handler;
 import android.os.Vibrator;
 import android.support.constraint.ConstraintLayout;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
+import android.widget.Toast;
+
 import com.example.gaper.activity.database.MyDatabase;
 import com.example.gaper.activity.database.Words;
 import java.util.ArrayList;
@@ -21,6 +24,7 @@ import java.util.Collections;
 
 public class PlayActivity extends MainActivity {
 
+    private TextView max;
     private TextView playingTeamName;
     private TextView playerOn;
     private ImageButton visible;
@@ -47,6 +51,8 @@ public class PlayActivity extends MainActivity {
     private String[][] players;
     private ArrayList values1 = new ArrayList();
     private ArrayList values2 = new ArrayList();
+    private String stringPointsNum;
+    private int pointsNum;
 
     private Bundle myBund = null;
     public MediaPlayer mp;
@@ -54,6 +60,8 @@ public class PlayActivity extends MainActivity {
     private CountDownTimer countDownTimer;
 
     ConstraintLayout constraintLayout;
+
+    Handler handler;
 
     private View.OnClickListener btnClickListener = new View.OnClickListener() {
         @Override
@@ -101,10 +109,12 @@ public class PlayActivity extends MainActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.play_activity);
 
-        //populateDatabase();
+        //if(myDB.checkDatabase())
+          //  populateDatabase();
 
         constraintLayout = (ConstraintLayout) findViewById(R.id.constraintLayout);
 
+        max = (TextView) findViewById(R.id.max);
         playingTeamName = (TextView) findViewById(R.id.teamName);
         playerOn = (TextView) findViewById(R.id.playerOn);
         visible = (ImageButton) findViewById(R.id.visible);
@@ -145,6 +155,12 @@ public class PlayActivity extends MainActivity {
             teamName = myBund.getStringArray("teamName");
             teamColor = myBund.getStringArray("teamColor");
             players = (String[][]) myBund.getSerializable("players");
+            stringPointsNum = myBund.getString("stringPointsNum");
+            if (stringPointsNum == null) {
+                stringPointsNum = "/";
+            }
+            if(!stringPointsNum.equals("/"))
+                pointsNum = Integer.parseInt(stringPointsNum);
 
             if (teamName != null) {
                 playingTeamName.setText(teamName[0]);
@@ -161,6 +177,14 @@ public class PlayActivity extends MainActivity {
         stop.setEnabled(false);
         stop.setTextColor(getResources().getColor(R.color.grey));
         enableButtons(true, 3);
+
+        if(!stringPointsNum.equals("/"))
+            max.setText(stringPointsNum + " to win");
+        else
+            max.setText(null);
+
+
+        handler = new Handler();
 
         visible.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -337,6 +361,17 @@ public class PlayActivity extends MainActivity {
                     setValues("pinc");
                     break;
             }
+        }
+        if(getTeamPoints(values1) == pointsNum || getTeamPoints(values2) == pointsNum) {
+            Toast.makeText(PlayActivity.this, "Game over!",
+                    Toast.LENGTH_LONG).show();
+            handler.postDelayed(new Runnable() {
+                @Override
+                public void run() {
+
+               }
+            }, 2000);
+            theEnd();
         }
     }
 
