@@ -1,13 +1,10 @@
-NOTE: Because this was my first android application or even bigger project I have made lots of mistakes during developing this
-game. One of those silly mistakes was testing an app only on my, at the time, personal mobile phone (OnePlus 3t). 
+NOTE: Because this was my first android application or even a bigger project I have made lots of mistakes during developing this game. One of those silly mistakes was testing an app only on my, at the time, personal mobile phone (OnePlus 3t). 
 A consequence of this beginner mistake was that the application does not perform well on all android devices.
 
-My last check of Activity android application performance confirmed that the app does not behave as it should on an 
-android emulator (Nexus 5X API 27). I have also noticed that there occurs a fatal error at the end of the application 
-when testing on my current mobile device (OnePlus 6t).
+My last check of Activity android application performance confirmed that the app does not behave as it should on
+android emulators, but when tested on my personal mobile phone (Oneplus 6t), the application worked as it should, with minor displaying inconveniences.
 
-I will try to fix these performance issues as soon as possible.
-On top of that, I will translate the Slovene application description in the English language.
+I will translate the Slovene application description in the English language as soon as possible.
 
 
 ---- DESCRIPTION ---
