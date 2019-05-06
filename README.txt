@@ -4,8 +4,6 @@ A consequence of this beginner mistake was that the application does not perform
 My last check of Activity android application performance confirmed that the app does not behave as it should on
 android emulators, but when tested on my personal mobile phone (Oneplus 6t), the application worked as it should, with minor displaying inconveniences.
 
-I will translate the Slovene application description in the English language as soon as possible.
-
 
 ---- DESCRIPTION ---
 In Slovene language:
