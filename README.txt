@@ -6,6 +6,17 @@ My last check of Activity android application performance confirmed that the app
 android emulators, but when tested on my personal mobile phone (Oneplus 6t), the application worked as it should, with minor
 displaying inconveniences.
 
+<p float="left">
+<img src="https://github.com/gaspermerela/ActivityGame/blob/master/screenshots/Activity_Game_Select_Teams.jpg" width="250" height="420" />
+
+<img src="https://github.com/gaspermerela/ActivityGame/blob/master/screenshots/Activity_Game_Game01.jpg" width="250" height="420" />
+
+<img src="https://github.com/gaspermerela/ActivityGame/blob/master/screenshots/Activity_Game_Game02.jpg" width="250" height="420" />
+
+<img src="https://github.com/gaspermerela/ActivityGame/blob/master/screenshots/Activity_Game_Results01.jpg" width="250" height="420" />
+
+<img src="https://github.com/gaspermerela/ActivityGame/blob/master/screenshots/Activity_Game_Results02.jpg" width="250" height="420" />
+</p>
 
 ---- DESCRIPTION ---
 In Slovene language:
