@@ -1,8 +1,10 @@
-NOTE: Because this was my first android application or even a bigger project I have made lots of mistakes during developing this game. One of those silly mistakes was testing an app only on my, at the time, personal mobile phone (OnePlus 3t). 
+NOTE: Because this was my first android application or even a bigger project I have made lots of mistakes during developing
+this game. One of those silly mistakes was testing an app only on my, at the time, personal mobile phone (OnePlus 3t). 
 A consequence of this beginner mistake was that the application does not perform well on all android devices.
 
 My last check of Activity android application performance confirmed that the app does not behave as it should on
-android emulators, but when tested on my personal mobile phone (Oneplus 6t), the application worked as it should, with minor displaying inconveniences.
+android emulators, but when tested on my personal mobile phone (Oneplus 6t), the application worked as it should, with minor
+displaying inconveniences.
 
 
 ---- DESCRIPTION ---
