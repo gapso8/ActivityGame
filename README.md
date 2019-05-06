@@ -11,8 +11,6 @@ displaying inconveniences.
 
 <img src="https://github.com/gaspermerela/ActivityGame/blob/master/screenshots/Activity_Game_Game01.jpg" width="250" height="420" />
 
-<img src="https://github.com/gaspermerela/ActivityGame/blob/master/screenshots/Activity_Game_Game02.jpg" width="250" height="420" />
-
 <img src="https://github.com/gaspermerela/ActivityGame/blob/master/screenshots/Activity_Game_Results01.jpg" width="250" height="420" />
 
 <img src="https://github.com/gaspermerela/ActivityGame/blob/master/screenshots/Activity_Game_Results02.jpg" width="250" height="420" />
