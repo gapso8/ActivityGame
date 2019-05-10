@@ -1,6 +1,6 @@
 # Activity (android application)
 
-DISCLAIMER:
+### Disclaimer
 Activity is my first bigger project and therefore my first mobile application. That being said, I have made some mistakes during developing this game. One of those silly beginner mistakes is testing an app only on my, at the time, 
 personal mobile phone (OnePlus 3t). Therefore the application may have bugs that haven't been discovered while testing performance on the mentioned personal mobile device.
 
